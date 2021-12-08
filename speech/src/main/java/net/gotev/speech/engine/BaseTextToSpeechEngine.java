@@ -1,6 +1,7 @@
 package net.gotev.speech.engine;
 
 import android.content.Context;
+import android.media.AudioManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
@@ -80,7 +81,7 @@ public class BaseTextToSpeechEngine implements TextToSpeechEngine {
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             final Bundle params = new Bundle();
-            params.putString(TextToSpeech.Engine.KEY_PARAM_STREAM, String.valueOf(mAudioStream));
+            params.putInt(TextToSpeech.Engine.KEY_PARAM_STREAM, mAudioStream);
             mTextToSpeech.speak(message, mTtsQueueMode, params, utteranceId);
         } else {
             final HashMap<String, String> params = new HashMap<>();
